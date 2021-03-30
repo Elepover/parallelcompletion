@@ -2,13 +2,9 @@
 
 A simple C# library to enable you to wait for multiple tasks to complete.
 
-## .NET 5 requirement
+## About this branch
 
-ParallelCompletion used two new C# 9 features in code:
-- `new()` constructor calls
-- `TaskCompletionSource` without a return type
-
-You can manually mitigate them and downgrade to C# 8 or earlier in order to use this library.
+This branch is the downgraded (C# 8) version of ParallelCompletion, using .NET Standard 2.1.
 
 ## Usage
 

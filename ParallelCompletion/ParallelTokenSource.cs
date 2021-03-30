@@ -11,8 +11,8 @@ namespace ParallelCompletion
     /// </summary>
     public class ParallelTokenSource
     {
-        private readonly TaskCompletionSource _tcs = new();
-        private readonly Dictionary<int, bool> _completionState = new();
+        private readonly TaskCompletionSource<bool> _tcs = new TaskCompletionSource<bool>();
+        private readonly Dictionary<int, bool> _completionState = new Dictionary<int, bool>();
         private bool _isCompleted = false;
         private int _tokenCount = 0;
 
@@ -31,7 +31,7 @@ namespace ParallelCompletion
             _completionState[id] = true;
             if (_completionState.Any(x => !x.Value)) return;
             _isCompleted = true;
-            _tcs.SetResult();
+            _tcs.SetResult(true);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace ParallelCompletion
             
             // wait for all tasks to complete, return immediately if no tasks were associated
             if (_tokenCount != 0)
-                await _tcs.Task;
+                _ = await _tcs.Task;
             
             // clean up
             _completionState.Clear();
