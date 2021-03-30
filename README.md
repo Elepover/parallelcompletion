@@ -2,6 +2,14 @@
 
 A simple C# library to enable you to wait for multiple tasks to complete.
 
+## .NET 5 requirement
+
+ParallelCompletion used two new C# 9 features in code:
+- `new()` constructor calls
+- `TaskCompletionSource` without a return type
+
+You can manually mitigate them and downgrade to C# 8 or earlier in order to use this library.
+
 ## Usage
 
 ### Create and manage tokens yourself
