@@ -12,6 +12,8 @@ You can manually mitigate them and downgrade to C# 8 or earlier in order to use 
 
 ## Usage
 
+**Note**: Each instance of `ParallelTokenSource` can only be used once. After `WaitForCompletion()` calls, they were invalidated and calling again will result in `InvalidOperationException`.
+
 ### Create and manage tokens yourself
 
 ```csharp
